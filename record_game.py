@@ -76,13 +76,13 @@ def main() -> None:
         if not is_game_over():
             if is_going_left():
                 im = im.convert("L")
-                im = im.resize((85, 85))
+                im = im.resize((224, 224))
                 file_path = images_save_directory / "1" / f"{actions[1]}.jpg"
                 actions[1] += 1
                 save_image(im, file_path)
             elif is_going_right():
                 im = im.convert("L")
-                im = im.resize((85, 85))
+                im = im.resize((224, 224))
                 file_path = images_save_directory / "2" / f"{actions[2]}.jpg"
                 actions[2] += 1
                 save_image(im, file_path)
@@ -90,7 +90,7 @@ def main() -> None:
                 if time.perf_counter() - previous > 0.7:
                     previous = time.perf_counter()
                     im = im.convert("L")
-                    im = im.resize((85, 85))
+                    im = im.resize((224, 224))
                     file_path = images_save_directory / "0" / f"{actions[0]}.jpg"
                     actions[0] += 1
                     save_image(im, file_path)
