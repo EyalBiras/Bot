@@ -43,6 +43,11 @@ def get_pos(filename: str):
     num = num.split(".")[0]
     return int(num)
 
+def is_going_left() -> bool:
+    return keyboard.is_pressed("a") or keyboard.is_pressed("left arrow")
+
+def is_going_right() -> bool:
+    return keyboard.is_pressed("d") or keyboard.is_pressed("right arrow")
 
 def main() -> None:
     images_save_directory.mkdir(parents=True, exist_ok=True)
@@ -69,13 +74,13 @@ def main() -> None:
     while not keyboard.is_pressed("q"):
         im = pyautogui.screenshot()
         if not is_game_over():
-            if keyboard.is_pressed("a"):
+            if is_going_left():
                 im = im.convert("L")
                 im = im.resize((85, 85))
                 file_path = images_save_directory / "1" / f"{actions[1]}.jpg"
                 actions[1] += 1
                 save_image(im, file_path)
-            elif keyboard.is_pressed("d"):
+            elif is_going_right():
                 im = im.convert("L")
                 im = im.resize((85, 85))
                 file_path = images_save_directory / "2" / f"{actions[2]}.jpg"
